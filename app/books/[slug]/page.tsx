@@ -9,6 +9,7 @@ import { TableOfContents } from '@/components/article/table-of-contents'
 import { CharacterList } from '@/components/article/character-list'
 import { SeriesTable } from '@/components/article/series-table'
 import { ArticleSection } from '@/components/article/article-section'
+import { RelationshipList } from '@/components/article/relationship-list'
 
 export function generateStaticParams() {
   return books.map((b) => ({ slug: b.slug }))
@@ -31,8 +32,10 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
     { id: 'overview', label: 'Overview' },
     { id: 'plot', label: 'Plot summary' },
     { id: 'characters', label: 'Characters' },
+    ...(book.relationships ? [{ id: 'relationships', label: 'Relationships' }] : []),
     ...(book.seriesEntries ? [{ id: 'series', label: 'Reading order' }] : []),
     { id: 'themes', label: 'Themes' },
+    ...(book.adaptations ? [{ id: 'adaptations', label: 'Adaptations' }] : []),
     { id: 'trivia', label: 'Did you know?' },
   ]
 
@@ -50,7 +53,7 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
 
       <header className="mt-6 border-b pb-6">
         <p className={cn('text-sm font-medium uppercase tracking-widest', a.text)}>
-          {book.series ? `${book.series} series` : 'Standalone novel'}
+          {book.series ? `${book.series} series` : `Standalone ${(book.format ?? 'novel').toLowerCase()}`}
         </p>
         <h1 className="mt-2 text-balance font-serif text-4xl font-semibold md:text-5xl">{book.title}</h1>
         <p className="mt-2 text-lg text-muted-foreground">
@@ -88,6 +91,12 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
             <CharacterList characters={book.characters} />
           </ArticleSection>
 
+          {book.relationships && (
+            <ArticleSection id="relationships" title="Relationships" accent={a.bg}>
+              <RelationshipList relationships={book.relationships} accentText={a.text} accentBorder={a.border} />
+            </ArticleSection>
+          )}
+
           {book.seriesEntries && (
             <ArticleSection id="series" title="Reading order" accent={a.bg}>
               <SeriesTable entries={book.seriesEntries} currentTitle={book.title} accentText={a.text} />
@@ -101,6 +110,16 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
               ))}
             </ul>
           </ArticleSection>
+
+          {book.adaptations && (
+            <ArticleSection id="adaptations" title="Adaptations" accent={a.bg}>
+              <ul className="flex flex-col gap-2">
+                {book.adaptations.map((item) => (
+                  <li key={item} className={cn('rounded-lg border px-4 py-3 leading-relaxed', a.border, a.softBg)}>{item}</li>
+                ))}
+              </ul>
+            </ArticleSection>
+          )}
 
           <ArticleSection id="trivia" title="Did you know?" accent={a.bg}>
             <ul className="flex list-disc flex-col gap-2 pl-5 leading-relaxed marker:text-muted-foreground">

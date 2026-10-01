@@ -1,3 +1,8 @@
+import { webNovelBooks } from './data/web-novels'
+import { fantasyBooks } from './data/fantasy'
+import { contemporaryBooks } from './data/contemporary'
+import { classicBooks } from './data/classics'
+
 export type Accent =
   | 'rose'
   | 'amber'
@@ -37,9 +42,19 @@ export type Book = {
   seriesEntries?: SeriesEntry[]
   themes: string[]
   facts: string[]
+  format?: string
+  originalLanguage?: string
+  relationships?: Relationship[]
+  adaptations?: string[]
 }
 
-export const books: Book[] = [
+export type Relationship = {
+  pair: string
+  type: string
+  description: string
+}
+
+const coreBooks: Book[] = [
   {
     slug: 'pride-and-prejudice',
     title: 'Pride and Prejudice',
@@ -562,6 +577,10 @@ export const books: Book[] = [
     ],
   },
 ]
+
+export const books: Book[] = [...coreBooks, ...webNovelBooks, ...fantasyBooks, ...contemporaryBooks, ...classicBooks].sort(
+  (a, b) => a.title.localeCompare(b.title),
+)
 
 export function getBook(slug: string) {
   return books.find((book) => book.slug === slug)

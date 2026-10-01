@@ -9,6 +9,8 @@ export function Infobox({ book }: { book: Book }) {
 
   const rows: [string, string][] = [
     ['Author', book.author],
+    ['Format', book.format ?? 'Novel'],
+    ['Language', book.originalLanguage ?? 'English'],
     ['First published', String(book.published)],
     ['Series', book.series ?? 'Standalone'],
     ['Subgenre', book.subgenre],
