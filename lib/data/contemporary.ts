@@ -39,7 +39,7 @@ export const contemporaryBooks: Book[] = [
     published: 2020,
     setting: 'North Bear Shores, a lakeside town on Lake Michigan',
     subgenre: 'Contemporary',
-    accent: 'amber',
+    accent: 'cyan',
     tagline: 'A romance writer and a literary novelist swap genres for one summer.',
     overview:
       "January Andrews, a romance author who no longer believes in happy endings, spends a summer at her late father\u2019s lake house \u2014 next door to Augustus \u201CGus\u201D Everett, her college rival and a brooding literary novelist.",
@@ -68,7 +68,7 @@ export const contemporaryBooks: Book[] = [
     published: 2022,
     setting: 'New York City and Sunshine Falls, North Carolina',
     subgenre: 'Contemporary',
-    accent: 'rose',
+    accent: 'indigo',
     tagline: 'The ruthless literary agent is not the heroine of a small-town romance. Or is she?',
     overview:
       'Literary agent Nora Stephens is the sharp city woman who always gets dumped in small-town romance novels. On a sisters\u2019 trip to Sunshine Falls, she keeps running into Charlie Lastra, a brooding book editor she clashed with in New York.',
@@ -98,7 +98,7 @@ export const contemporaryBooks: Book[] = [
     series: 'It Ends with Us',
     setting: 'Boston, Massachusetts, and Plethora, Maine',
     subgenre: 'Contemporary / Drama',
-    accent: 'fuchsia',
+    accent: 'purple',
     tagline: 'A love story that asks when it is time to walk away.',
     overview:
       'Lily Bloom moves to Boston, opens a flower shop and falls for neurosurgeon Ryle Kincaid. When his behaviour turns abusive and her first love, Atlas Corrigan, reappears, Lily must confront the cycle she witnessed growing up. Content warning: domestic violence.',
@@ -134,7 +134,7 @@ export const contemporaryBooks: Book[] = [
     published: 2016,
     setting: 'Bexley & Gamin, a merged publishing company',
     subgenre: 'Contemporary / Workplace',
-    accent: 'orange',
+    accent: 'blue',
     tagline: 'Two executive assistants. One promotion. A whole lot of hate.',
     overview:
       'Lucy Hutton and Joshua Templeman are executive assistants to the co-CEOs of a newly merged publishing house. They despise each other \u2014 until they compete for the same promotion.',

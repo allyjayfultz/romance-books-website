@@ -3,8 +3,8 @@ type Props = { bookCount: number; characterCount: number; authorCount: number }
 export function HomeHero({ bookCount, characterCount, authorCount }: Props) {
   const stats = [
     { label: 'Entries', value: bookCount, color: 'text-primary' },
-    { label: 'Characters', value: characterCount, color: 'text-rose-300' },
-    { label: 'Authors', value: authorCount, color: 'text-amber-300' },
+    { label: 'Characters', value: characterCount, color: 'text-sky-300' },
+    { label: 'Authors', value: authorCount, color: 'text-teal-300' },
   ]
 
   return (

@@ -109,7 +109,7 @@ export const webNovelBooks: Book[] = [
     format: 'Webcomic',
     setting: 'A modern reimagining of Mount Olympus, the Mortal Realm and the Underworld',
     subgenre: 'Mythological Romance / Webcomic',
-    accent: 'fuchsia',
+    accent: 'purple',
     tagline: 'Hades and Persephone, retold for the smartphone age.',
     overview:
       "Lore Olympus is a webcomic created by New Zealand artist Rachel Smythe and published on WEBTOON. It reimagines the Greek myth of Hades and Persephone in a contemporary setting of cars, phones and corporate offices, with gods drawn in vivid colour-coded palettes. The series explores consent, trauma, power and healing alongside its central romance.",

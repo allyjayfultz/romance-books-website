@@ -9,19 +9,19 @@ type AccentClasses = {
 }
 
 export const accents: Record<Accent, AccentClasses> = {
-  rose: {
-    text: 'text-rose-300',
-    bg: 'bg-rose-400',
-    softBg: 'bg-rose-400/10',
-    border: 'border-rose-400/40',
-    bar: 'from-rose-400 to-rose-600',
+  indigo: {
+    text: 'text-indigo-300',
+    bg: 'bg-indigo-400',
+    softBg: 'bg-indigo-400/10',
+    border: 'border-indigo-400/40',
+    bar: 'from-indigo-300 to-indigo-600',
   },
-  amber: {
-    text: 'text-amber-300',
-    bg: 'bg-amber-400',
-    softBg: 'bg-amber-400/10',
-    border: 'border-amber-400/40',
-    bar: 'from-amber-300 to-amber-600',
+  cyan: {
+    text: 'text-cyan-300',
+    bg: 'bg-cyan-400',
+    softBg: 'bg-cyan-400/10',
+    border: 'border-cyan-400/40',
+    bar: 'from-cyan-300 to-cyan-600',
   },
   sky: {
     text: 'text-sky-300',
@@ -44,19 +44,19 @@ export const accents: Record<Accent, AccentClasses> = {
     border: 'border-emerald-400/40',
     bar: 'from-emerald-300 to-emerald-600',
   },
-  orange: {
-    text: 'text-orange-300',
-    bg: 'bg-orange-400',
-    softBg: 'bg-orange-400/10',
-    border: 'border-orange-400/40',
-    bar: 'from-orange-300 to-orange-600',
+  blue: {
+    text: 'text-blue-300',
+    bg: 'bg-blue-400',
+    softBg: 'bg-blue-400/10',
+    border: 'border-blue-400/40',
+    bar: 'from-blue-300 to-blue-600',
   },
-  fuchsia: {
-    text: 'text-fuchsia-300',
-    bg: 'bg-fuchsia-400',
-    softBg: 'bg-fuchsia-400/10',
-    border: 'border-fuchsia-400/40',
-    bar: 'from-fuchsia-300 to-fuchsia-600',
+  purple: {
+    text: 'text-purple-300',
+    bg: 'bg-purple-400',
+    softBg: 'bg-purple-400/10',
+    border: 'border-purple-400/40',
+    bar: 'from-purple-300 to-purple-700',
   },
   teal: {
     text: 'text-teal-300',
