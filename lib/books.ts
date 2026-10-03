@@ -2,21 +2,35 @@ import { webNovelBooks } from './data/web-novels'
 import { fantasyBooks } from './data/fantasy'
 import { contemporaryBooks } from './data/contemporary'
 import { classicBooks } from './data/classics'
+import { newAdditionBooks } from './data/new-additions'
+import { trendingBooks } from './data/trending'
+import { profiles } from './data/profiles'
 
 export type Accent =
-  | 'rose'
-  | 'amber'
+  | 'indigo'
+  | 'cyan'
   | 'sky'
   | 'violet'
   | 'emerald'
-  | 'orange'
-  | 'fuchsia'
+  | 'blue'
+  | 'purple'
   | 'teal'
 
 export type Character = {
   name: string
   role: 'Heroine' | 'Hero' | 'Protagonist' | 'Supporting' | 'Antagonist' | 'Family'
   description: string
+  profile?: CharacterProfile
+}
+
+export type CharacterProfile = {
+  archetype: string
+  traits: string[]
+  strengths: string[]
+  weaknesses: string[]
+  family?: string[]
+  bonds?: string[]
+  detail?: string
 }
 
 export type SeriesEntry = {
@@ -62,7 +76,7 @@ const coreBooks: Book[] = [
     published: 1813,
     setting: 'Hertfordshire, Kent and Derbyshire, England — early 19th century',
     subgenre: 'Classic',
-    accent: 'rose',
+    accent: 'indigo',
     tagline: 'The enemies-to-lovers novel that started it all.',
     overview:
       'Pride and Prejudice follows Elizabeth Bennet, the sharp-witted second of five daughters in a family whose estate is entailed away to a male cousin. Her clashes with the proud, wealthy Fitzwilliam Darcy form the heart of a novel about first impressions, class, reputation and marriage in Regency England.',
@@ -353,7 +367,7 @@ const coreBooks: Book[] = [
     series: 'A Court of Thorns and Roses',
     setting: 'The mortal lands and Prythian, a faerie realm of seven courts',
     subgenre: 'Fantasy Romance',
-    accent: 'fuchsia',
+    accent: 'purple',
     tagline: 'A huntress, a cursed faerie court and a deadly bargain.',
     overview:
       'A Court of Thorns and Roses (ACOTAR) is a fantasy romance loosely inspired by "Beauty and the Beast." Nineteen-year-old huntress Feyre Archeron is taken into the faerie land of Prythian, where she becomes entangled in a centuries-old curse and the politics of the High Lords.',
@@ -421,7 +435,7 @@ const coreBooks: Book[] = [
     published: 1996,
     setting: 'New Bern, North Carolina — 1932, 1946 and the present day',
     subgenre: 'Contemporary / Drama',
-    accent: 'amber',
+    accent: 'cyan',
     tagline: 'A love story read aloud, one page at a time.',
     overview:
       'The Notebook was Nicholas Sparks\u2019s breakthrough bestseller. It intertwines a 1940s love story with a present-day frame in which an elderly man reads the story aloud to a woman in a nursing home.',
@@ -471,7 +485,7 @@ const coreBooks: Book[] = [
     series: 'Me Before You',
     setting: 'A small English town near a castle — present day',
     subgenre: 'Contemporary',
-    accent: 'orange',
+    accent: 'blue',
     tagline: 'Six months to show a man his life is worth living.',
     overview:
       'Me Before You is a contemporary love story about Louisa "Lou" Clark, a quirky young woman, and Will Traynor, a former high-flying businessman left quadriplegic after an accident. The novel explores love, autonomy and the right to choose.',
@@ -578,9 +592,20 @@ const coreBooks: Book[] = [
   },
 ]
 
-export const books: Book[] = [...coreBooks, ...webNovelBooks, ...fantasyBooks, ...contemporaryBooks, ...classicBooks].sort(
-  (a, b) => a.title.localeCompare(b.title),
-)
+export const books: Book[] = [
+  ...coreBooks,
+  ...webNovelBooks,
+  ...fantasyBooks,
+  ...contemporaryBooks,
+  ...classicBooks,
+  ...newAdditionBooks,
+  ...trendingBooks,
+]
+  .map((book) => ({
+    ...book,
+    characters: book.characters.map((c) => ({ ...c, profile: c.profile ?? profiles[book.slug]?.[c.name] })),
+  }))
+  .sort((a, b) => b.published - a.published || a.title.localeCompare(b.title))
 
 export function getBook(slug: string) {
   return books.find((book) => book.slug === slug)

@@ -82,7 +82,7 @@ export const classicBooks: Book[] = [
     published: 2011,
     setting: 'Ancient Greece and the plains of Troy',
     subgenre: 'Historical / Mythological',
-    accent: 'amber',
+    accent: 'cyan',
     tagline: 'The Trojan War retold as a love story.',
     overview:
       'Madeline Miller retells the Iliad through Patroclus, an exiled prince who becomes the companion and lover of Achilles.',

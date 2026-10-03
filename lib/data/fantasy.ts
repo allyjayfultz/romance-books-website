@@ -9,7 +9,7 @@ export const fantasyBooks: Book[] = [
     series: 'The Empyrean',
     setting: 'Basgiath War College in the kingdom of Navarre',
     subgenre: 'Fantasy Romance',
-    accent: 'orange',
+    accent: 'blue',
     tagline: 'Dragons, a deadly war college, and an enemy she cannot afford to want.',
     overview:
       "Fourth Wing is the first book in Rebecca Yarros\u2019s Empyrean series. Twenty-year-old Violet Sorrengail, who trained her whole life to become a scribe, is forced by her mother, the commanding general, to enter the brutal Riders Quadrant at Basgiath War College, where cadets must bond with dragons or die trying.",

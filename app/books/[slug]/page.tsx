@@ -5,8 +5,8 @@ import { books, getBook } from '@/lib/books'
 import { accents } from '@/lib/accents'
 import { cn } from '@/lib/utils'
 import { Infobox } from '@/components/article/infobox'
-import { TableOfContents } from '@/components/article/table-of-contents'
-import { CharacterList } from '@/components/article/character-list'
+import { CharacterCards } from '@/components/article/character-cards'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SeriesTable } from '@/components/article/series-table'
 import { ArticleSection } from '@/components/article/article-section'
 import { RelationshipList } from '@/components/article/relationship-list'
@@ -31,7 +31,7 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
   const sections = [
     { id: 'overview', label: 'Overview' },
     { id: 'plot', label: 'Plot summary' },
-    { id: 'characters', label: 'Characters' },
+    { id: 'characters', label: 'Character cards' },
     ...(book.relationships ? [{ id: 'relationships', label: 'Relationships' }] : []),
     ...(book.seriesEntries ? [{ id: 'series', label: 'Reading order' }] : []),
     { id: 'themes', label: 'Themes' },
@@ -61,16 +61,30 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
         </p>
       </header>
 
-      <div className="mt-8 grid gap-10 lg:grid-cols-[200px_minmax(0,1fr)_300px]">
-        <aside className="hidden lg:block">
-          <TableOfContents sections={sections} accentText={a.text} />
-        </aside>
+      <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <Tabs defaultValue="overview" className="order-2 min-w-0 gap-6 lg:order-none">
+          <TabsList
+            aria-label={`${book.title} sections`}
+            className="w-full flex-wrap justify-start gap-1 rounded-xl border bg-card p-1.5 group-data-horizontal/tabs:h-auto"
+          >
+            {sections.map((s) => (
+              <TabsTrigger
+                key={s.id}
+                value={s.id}
+                className="h-9 flex-none cursor-pointer px-3 data-active:border-primary/50 data-active:bg-primary/15 data-active:text-primary dark:data-active:border-primary/50 dark:data-active:bg-primary/15 dark:data-active:text-primary"
+              >
+                {s.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-        <div className="order-2 min-w-0 lg:order-none">
+          <TabsContent value="overview" className="text-base">
           <ArticleSection id="overview" title="Overview" accent={a.bg}>
             <p className="text-lg leading-relaxed">{book.overview}</p>
           </ArticleSection>
+          </TabsContent>
 
+          <TabsContent value="plot" className="text-base">
           <ArticleSection id="plot" title="Plot summary" accent={a.bg}>
             <p className={cn('mb-5 rounded-lg border px-4 py-3 text-sm', a.border, a.softBg)}>
               <strong className={a.text}>Spoiler warning:</strong> this section describes the full plot, including the ending.
@@ -86,23 +100,31 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
               ))}
             </ol>
           </ArticleSection>
+          </TabsContent>
 
-          <ArticleSection id="characters" title="Characters" accent={a.bg}>
-            <CharacterList characters={book.characters} />
+          <TabsContent value="characters" className="text-base">
+          <ArticleSection id="characters" title="Character cards" accent={a.bg}>
+            <CharacterCards characters={book.characters} bookTitle={book.title} accentBar={a.bar} accentText={a.text} />
           </ArticleSection>
+          </TabsContent>
 
           {book.relationships && (
+            <TabsContent value="relationships" className="text-base">
             <ArticleSection id="relationships" title="Relationships" accent={a.bg}>
               <RelationshipList relationships={book.relationships} accentText={a.text} accentBorder={a.border} />
             </ArticleSection>
+            </TabsContent>
           )}
 
           {book.seriesEntries && (
+            <TabsContent value="series" className="text-base">
             <ArticleSection id="series" title="Reading order" accent={a.bg}>
               <SeriesTable entries={book.seriesEntries} currentTitle={book.title} accentText={a.text} />
             </ArticleSection>
+            </TabsContent>
           )}
 
+          <TabsContent value="themes" className="text-base">
           <ArticleSection id="themes" title="Themes" accent={a.bg}>
             <ul className="flex flex-wrap gap-2">
               {book.themes.map((t) => (
@@ -110,8 +132,10 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
               ))}
             </ul>
           </ArticleSection>
+          </TabsContent>
 
           {book.adaptations && (
+            <TabsContent value="adaptations" className="text-base">
             <ArticleSection id="adaptations" title="Adaptations" accent={a.bg}>
               <ul className="flex flex-col gap-2">
                 {book.adaptations.map((item) => (
@@ -119,14 +143,17 @@ export default async function BookPage({ params }: PageProps<'/books/[slug]'>) {
                 ))}
               </ul>
             </ArticleSection>
+            </TabsContent>
           )}
 
+          <TabsContent value="trivia" className="text-base">
           <ArticleSection id="trivia" title="Did you know?" accent={a.bg}>
             <ul className="flex list-disc flex-col gap-2 pl-5 leading-relaxed marker:text-muted-foreground">
               {book.facts.map((f) => <li key={f}>{f}</li>)}
             </ul>
           </ArticleSection>
-        </div>
+          </TabsContent>
+        </Tabs>
 
         <div className="order-1 lg:order-none">
           <Infobox book={book} />
