@@ -2,6 +2,7 @@ import { webNovelBooks } from './data/web-novels'
 import { fantasyBooks } from './data/fantasy'
 import { contemporaryBooks } from './data/contemporary'
 import { classicBooks } from './data/classics'
+import { newAdditionBooks } from './data/new-additions'
 
 export type Accent =
   | 'rose'
@@ -578,7 +579,7 @@ const coreBooks: Book[] = [
   },
 ]
 
-export const books: Book[] = [...coreBooks, ...webNovelBooks, ...fantasyBooks, ...contemporaryBooks, ...classicBooks].sort(
+export const books: Book[] = [...coreBooks, ...webNovelBooks, ...fantasyBooks, ...contemporaryBooks, ...classicBooks, ...newAdditionBooks].sort(
   (a, b) => a.title.localeCompare(b.title),
 )
 
